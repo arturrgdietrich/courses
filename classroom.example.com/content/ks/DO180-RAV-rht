@@ -1,0 +1,8 @@
+RHT_VENUE=novello
+RHT_ENROLLMENT=0
+RHT_COURSE=do180
+RHT_TITLE="Red Hat OpenShift I: Containers & Kubernetes"
+RHT_VMTREE="ocp4.6/x86_64"
+RHT_CLASSROOM=rhel
+RHT_CAPACITY=200
+RHT_NETWORK=no

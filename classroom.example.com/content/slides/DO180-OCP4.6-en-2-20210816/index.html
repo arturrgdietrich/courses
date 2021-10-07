@@ -1,0 +1,1072 @@
+<!doctype html>
+<html xmlns:xi="http://www.w3.org/2001/XInclude">
+   <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+      <title>DO180: Red Hat OpenShift I: Containers &amp; Kubernetes</title>
+      <link rel="stylesheet" href="css/reveal.css"/>
+      <link rel="stylesheet" href="css/theme/redhat.css" id="theme"/>
+      <!--Theme used for syntax highlighting of code-->
+      <link rel="stylesheet" href="lib/css/zenburn.css"/>
+      <!--Printing and PDF exports-->
+      <script>
+                    var link = document.createElement( 'link' );
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+                    document.getElementsByTagName( 'head' )[0].appendChild( link );
+                </script>
+   </head>
+   <body>
+      <div class="reveal">
+         <div class="slides">
+            <section data-state="white"
+                     data-background-image="css/images/RH_Title_Background.png">
+               <img src="css/images/redhat-logo-white.svg" class="title-logo"/>
+               <h2 class="course-title">Red Hat OpenShift I: Containers &amp; Kubernetes</h2>
+               <p class="title-color">DO180</p>
+            </section>
+            <section data-state="black">
+               <h2>Welcome</h2>
+            </section>
+            <section data-state="black">
+               <h2>Course Objectives and Structure</h2>
+            </section>
+            <section data-state="black">
+               <h2>Schedule</h2>
+               <table class="schedule_table">
+                  <tr class="table_header" style="background-color: #D9EBF1;">
+                     <td>
+                        <strong>Day 1</strong>
+                     </td>
+                     <td>
+                        <strong>Day 2</strong>
+                     </td>
+                     <td>
+                        <strong>Day 3</strong>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Introduction</td>
+                     <td>Managing Container Images , cont</td>
+                     <td>Deploying Multi-Container Applications , cont</td>
+                  </tr>
+                  <tr>
+                     <td>Introducing Container Technology</td>
+                     <td>Creating Custom Container Images</td>
+                     <td>Troubleshooting Containerized Applications</td>
+                  </tr>
+                  <tr>
+                     <td>Creating Containerized Services</td>
+                     <td>Deploying Containerized Applications on OpenShift</td>
+                     <td>Comprehensive Review</td>
+                  </tr>
+                  <tr>
+                     <td>Managing Containers</td>
+                     <td>Deploying Multi-Container Applications  (Section 1)</td>
+                     <td>Appendixes</td>
+                  </tr>
+                  <tr>
+                     <td>Managing Container Images  (all except the lab)</td>
+                     <td/>
+                     <td/>
+                  </tr>
+               </table>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 1: Introducing Container Technology</h1>
+               <p class="goal_title">Goal: Describe how applications run in containers orchestrated by Red Hat OpenShift Container Platform.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Describe the difference between container applications and traditional deployments.</p>
+                  </li>
+                  <li>
+                     <p>Describe the basics of container architecture.</p>
+                  </li>
+                  <li>
+                     <p>Describe the benefits of orchestrating applications and OpenShift Container Platform.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Overview of Container Technology</h2>
+               </section>
+               <section>
+                  <h3>Containerized Applications</h3>
+               </section>
+               <section>
+                  <img src="images/container_vs_os.svg"/>
+                  <p>Container versus operating system differences</p>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="multchoice_title"> Quiz:</span>  Overview of Container Technology</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Overview of Container Architecture</h2>
+               </section>
+               <section>
+                  <h3>Introducing Container History</h3>
+               </section>
+               <section>
+                  <h3>Describing Linux Container Architecture</h3>
+               </section>
+               <section>
+                  <h3>Managing Containers with Podman</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="multchoice_title"> Quiz:</span>  Overview of Container Architecture</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Overview of Kubernetes and OpenShift</h2>
+               </section>
+               <section>
+                  <h3>Limitations of Containers</h3>
+               </section>
+               <section>
+                  <h3>Kubernetes Overview</h3>
+               </section>
+               <section>
+                  <h3>Kubernetes Features</h3>
+               </section>
+               <section>
+                  <h3>OpenShift Overview</h3>
+               </section>
+               <section>
+                  <h3>OpenShift Features</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="multchoice_title"> Quiz:</span>  Describing Kubernetes and OpenShift</h2>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Configuring the Classroom Environment</h2>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>Containers are an isolated application runtime created with very little overhead.</li>
+                  <li>A container image packages an application with all of its dependencies, making it easier to run the application in different environments.</li>
+                  <li>Applications such as Podman create containers using features of the standard Linux kernel.</li>
+                  <li>Container image registries are the preferred mechanism for distributing container images to multiple users and hosts.</li>
+                  <li>OpenShift orchestrates applications composed of multiple containers using Kubernetes.</li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary (continued)</h2>
+               <ul class="summary_list">
+                  <li>Kubernetes manages load balancing, high availability, and persistent storage for containerized applications.</li>
+                  <li>OpenShift adds to Kubernetes multitenancy, security, ease of use, and continuous integration and continuous development features.</li>
+                  <li>OpenShift routes enable external access to containerized applications in a manageable way.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 2: Creating Containerized Services</h1>
+               <p class="goal_title">Goal: Provision a service using container technology.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Create a database server from a container image.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Provisioning Containerized Services</h2>
+               </section>
+               <section>
+                  <h3>Fetching Container Images with Podman</h3>
+               </section>
+               <section>
+                  <h3>Running Containers</h3>
+               </section>
+               <section>
+                  <h3>Using the Red Hat Container Catalog</h3>
+               </section>
+               <section>
+                  <img src="images/screen-rhcc-home-1.png"/>
+                  <p>Red Hat Container Catalog search page</p>
+               </section>
+               <section>
+                  <img src="images/screen-rhcc-home-2.png"/>
+                  <p>Apache httpd 2.4 (rhel8/httpd-24) overview image page</p>
+               </section>
+               <section>
+                  <img src="images/screen-rhcc-home-3.png"/>
+                  <p>Apache httpd 2.4 (rhel8/httpd-24) latest image page</p>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating a MySQL Database Instance</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Using Rootless Containers</h2>
+               </section>
+               <section>
+                  <h3>Evolution of Container Usage</h3>
+               </section>
+               <section>
+                  <h3>Advantages of Rootless Containers</h3>
+               </section>
+               <section>
+                  <h3>Understanding Rootless Containers</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Exploring root and rootless containers</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Creating Containerized Services</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>Podman allows users to search for and download images from local or remote registries.</li>
+                  <li>The <code>podman run</code> command creates and starts a container from a container image.</li>
+                  <li>Containers are executed in the background by using the <code>-d</code> flag, or interactively by using the <code>‑it</code> flag.</li>
+                  <li>Some container images require environment variables that are set using the <code>-e</code> option with the <code>podman run</code> command.</li>
+                  <li>Red Hat Container Catalog assists in searching, exploring, and analyzing container images from Red Hat's official container image repository.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 3: Managing Containers</h1>
+               <p class="goal_title">Goal: Make use of prebuilt container images to create and manage containerized services.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Manage a container's life cycle from creation to deletion.</p>
+                  </li>
+                  <li>
+                     <p>Save container application data with persistent storage.</p>
+                  </li>
+                  <li>
+                     <p>Describe how to use port forwarding to access a container.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Managing the Life Cycle of Containers</h2>
+               </section>
+               <section>
+                  <h3>Container Life Cycle Management with Podman</h3>
+               </section>
+               <section>
+                  <img src="images/lifecycle-actions.svg"/>
+                  <p>Podman managing subcommands</p>
+               </section>
+               <section>
+                  <img src="images/lifecycle-queries.svg"/>
+                  <p>Podman query subcommands</p>
+               </section>
+               <section>
+                  <h3>Creating Containers</h3>
+               </section>
+               <section>
+                  <h3>Running Commands in a Container</h3>
+               </section>
+               <section>
+                  <h3>Managing Containers</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Managing a MySQL Container</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Attaching Persistent Storage to Containers</h2>
+               </section>
+               <section>
+                  <h3>Preparing Permanent Storage Locations</h3>
+               </section>
+               <section>
+                  <img src="images/persistent-layer2.svg"/>
+                  <p>Container layers</p>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Create MySQL Container with Persistent Database</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Accessing Containers</h2>
+               </section>
+               <section>
+                  <h3>Mapping Network Ports</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Loading the Database</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Managing Containers</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>Podman has subcommands to: create a new container (<code>run</code>), delete a container (<code>rm</code>), list containers (<code>ps</code>), stop a container (<code>stop</code>), and start a process in a container (<code>exec</code>).</li>
+                  <li>Default container storage is ephemeral, meaning its contents are not present after the container is removed.</li>
+                  <li>Containers can use a folder from the host file system to work with persistent data.</li>
+                  <li>Podman mounts volumes in a container with the <code>-v</code> option in the <code>podman run</code> command.</li>
+                  <li>The <code>podman exec</code> command starts an additional process inside a running container.</li>
+                  <li>Podman maps local ports to container ports by using the <code>-p</code> option in the <code>run</code> subcommand.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 4: Managing Container Images</h1>
+               <p class="goal_title">Goal: Manage the life cycle of a container image from creation to deletion.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Search for and pull images from remote registries.</p>
+                  </li>
+                  <li>
+                     <p>Export, import, and manage container images locally and in a registry.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Accessing Registries</h2>
+               </section>
+               <section>
+                  <h3>Public Registries</h3>
+               </section>
+               <section>
+                  <h3>Private Registries</h3>
+               </section>
+               <section>
+                  <h3>Configuring Registries in Podman</h3>
+               </section>
+               <section>
+                  <h3>Accessing Registries</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="multchoice_title"> Quiz:</span>  Working With Registries</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Manipulating Container Images</h2>
+               </section>
+               <section>
+                  <h3>Introduction</h3>
+               </section>
+               <section>
+                  <h3>Saving and Loading Images</h3>
+               </section>
+               <section>
+                  <h3>Deleting Images</h3>
+               </section>
+               <section>
+                  <h3>Deleting All Images</h3>
+               </section>
+               <section>
+                  <h3>Modifying Images</h3>
+               </section>
+               <section>
+                  <h3>Tagging Images</h3>
+               </section>
+               <section>
+                  <h3>Best Practices for Tagging Images</h3>
+               </section>
+               <section>
+                  <h3>Publishing Images to a Registry</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating a Custom Apache Container Image</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Managing Images</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>The Red Hat Container Catalog provides tested and certified images at registry.redhat.io.</li>
+                  <li>Podman can interact with remote container registries to search, pull, and push container images.</li>
+                  <li>Image tags are a mechanism to support multiple releases of a container image.</li>
+                  <li>Podman provides commands to manage container images both in local storage and as compressed files.</li>
+                  <li>Use the <code>podman commit</code> command to create an image from a container.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 5: Creating Custom Container Images</h1>
+               <p class="goal_title">Goal: Design and code a Containerfile to build a custom container image.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Describe the approaches for creating custom container images.</p>
+                  </li>
+                  <li>
+                     <p>Create a container image using common Containerfile commands.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Designing Custom Container Images</h2>
+               </section>
+               <section>
+                  <h3>Reusing Existing Containerfiles</h3>
+               </section>
+               <section>
+                  <h3>Working with the Red Hat Software Collections Library</h3>
+               </section>
+               <section>
+                  <h3>Finding Containerfiles from the Red Hat Software Collections Library</h3>
+               </section>
+               <section>
+                  <h3>Container Images in Red Hat Container Catalog (RHCC)</h3>
+               </section>
+               <section>
+                  <h3>Searching for Images Using Quay.io</h3>
+               </section>
+               <section>
+                  <h3>Finding Containerfiles on Docker Hub</h3>
+               </section>
+               <section>
+                  <h3>Describing How to Use the OpenShift Source-to-Image Tool</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="multchoice_title"> Quiz:</span>  Approaches to Container Image Design</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Building Custom Container Images with Containerfiles</h2>
+               </section>
+               <section>
+                  <h3>Building Base Containers</h3>
+               </section>
+               <section>
+                  <h3>CMD and ENTRYPOINT</h3>
+               </section>
+               <section>
+                  <h3>ADD and COPY</h3>
+               </section>
+               <section>
+                  <h3>Layering Image</h3>
+               </section>
+               <section>
+                  <h3>Building Images with Podman</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating a Basic Apache Container Image</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Creating Custom Container Images</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>A <code>Containerfile</code> contains instructions that specify how to construct a container image.</li>
+                  <li>Container images provided by Red Hat Container Catalog or Quay.io are a good starting point for creating custom images for a specific language or technology.</li>
+                  <li>Building an image from a Containerfile is a three-step process:</li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary (continued)</h2>
+               <ul class="summary_list">
+                  <li>The Source-to-Image (S2I) process provides an alternative to Containerfiles. S2I implements a standardized container image build process for common technologies from application source code. This allows developers to focus on application development and not Containerfile development.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 6: Deploying Containerized Applications on OpenShift</h1>
+               <p class="goal_title">Goal: Deploy single container applications on OpenShift Container Platform.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Describe the architecture of Kubernetes and Red Hat OpenShift Container Platform.</p>
+                  </li>
+                  <li>
+                     <p>Create standard Kubernetes resources.</p>
+                  </li>
+                  <li>
+                     <p>Create a route to a service.</p>
+                  </li>
+                  <li>
+                     <p>Build an application using the Source-to-Image facility of OpenShift Container Platform.</p>
+                  </li>
+                  <li>
+                     <p>Create an application using the OpenShift web console.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Describing Kubernetes and OpenShift Architecture</h2>
+               </section>
+               <section>
+                  <h3>Kubernetes and OpenShift</h3>
+               </section>
+               <section>
+                  <img src="images/openshift-arch-stack.svg"/>
+                  <p>OpenShift component stack</p>
+               </section>
+               <section>
+                  <img src="images/openshift-arch-overview-2.svg"/>
+                  <p>OpenShift and Kubernetes architecture</p>
+               </section>
+               <section>
+                  <h3>New Features in RHOCP 4</h3>
+               </section>
+               <section>
+                  <h3>Describing Kubernetes Resource Types</h3>
+               </section>
+               <section>
+                  <h3>OpenShift Resource Types</h3>
+               </section>
+               <section>
+                  <h3>Networking</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="multchoice_title"> Quiz:</span>  Describing Kubernetes and OpenShift</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Creating Kubernetes Resources</h2>
+               </section>
+               <section>
+                  <h3>The Red Hat OpenShift Container Platform (RHOCP) Command-line Tool</h3>
+               </section>
+               <section>
+                  <h3>Describing Pod Resource Definition Syntax</h3>
+               </section>
+               <section>
+                  <h3>Describing Service Resource Definition Syntax</h3>
+               </section>
+               <section>
+                  <img src="images/kubernetes-network-1.svg"/>
+                  <p>Basic Kubernetes networking</p>
+               </section>
+               <section>
+                  <img src="images/kubernetes-network-2.svg"/>
+                  <p>Kubernetes services networking</p>
+               </section>
+               <section>
+                  <h3>Discovering Services</h3>
+               </section>
+               <section>
+                  <img src="images/kubernetes-nodeport-svc.svg"/>
+                  <p>Alternative method for external access to a Kubernetes service</p>
+               </section>
+               <section>
+                  <h3>Creating Applications</h3>
+               </section>
+               <section>
+                  <img src="images/kubernetes-oc-new-app.svg"/>
+                  <p>Resources created for a new application</p>
+               </section>
+               <section>
+                  <h3>Managing Persistent Storage</h3>
+               </section>
+               <section>
+                  <h3>Managing OpenShift Resources at the Command Line</h3>
+               </section>
+               <section>
+                  <h3>Labelling Resources</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Deploying a Database Server on OpenShift</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Creating Routes</h2>
+               </section>
+               <section>
+                  <h3>Working with Routes</h3>
+               </section>
+               <section>
+                  <img src="images/openshift-network-1.svg"/>
+                  <p>OpenShift routes and Kubernetes services</p>
+               </section>
+               <section>
+                  <h3>Creating Routes</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Exposing a Service as a Route</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Creating Applications with Source-to-Image</h2>
+               </section>
+               <section>
+                  <h3>The Source-to-Image (S2I) Process</h3>
+               </section>
+               <section>
+                  <img src="images/openshift-dc-and-bc-3.svg"/>
+                  <p>Deployment and dependent resources</p>
+               </section>
+               <section>
+                  <h3>Describing Image Streams</h3>
+               </section>
+               <section>
+                  <h3>Building an Application with S2I and the CLI</h3>
+               </section>
+               <section>
+                  <h3>Relationship Between Build and Deployment</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating a Containerized Application with Source-to-Image</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Creating Applications with the OpenShift Web Console</h2>
+               </section>
+               <section>
+                  <h3>Accessing the OpenShift Web Console</h3>
+               </section>
+               <section>
+                  <img src="images/webconsole-projects.png"/>
+                  <p>OpenShift web console home page</p>
+               </section>
+               <section>
+                  <h3>Creating New Applications</h3>
+               </section>
+               <section>
+                  <img src="images/console-dev-catalog-mod.png"/>
+                  <p>OpenShift Developer Catalog page</p>
+               </section>
+               <section>
+                  <img src="images/console-bc-lecture-mod.png"/>
+                  <p>OpenShift build configurations page</p>
+               </section>
+               <section>
+                  <h3>Managing Deployed Applications</h3>
+               </section>
+               <section>
+                  <img src="images/console-dc-lecture-mod.png"/>
+                  <p>OpenShift Workloads menu</p>
+               </section>
+               <section>
+                  <h3>Other Web Console Features</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating an Application with the Web Console</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Deploying Containerized Applications on OpenShift</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>OpenShift Container Platform stores definitions of each OpenShift or Kubernetes resource instance as an object in the cluster's distributed database service, <code>etcd</code>.
+Common resource types are: <code>Pod</code>, <code>Persistent Volume</code> (PV), <code>Persistent Volume Claim</code> (PVC), <code>Service</code> (SVC), <code>Route</code>, <code>Deployment</code>, <code>DeploymentConfig</code> and <code>Build Configuration</code> (BC).</li>
+                  <li>Use the OpenShift command-line client <code>oc</code> to:<ul class="summary_list">
+                        <li>Create, change, and delete projects.</li>
+                        <li>Create application resources inside a project.</li>
+                        <li>Delete, inspect, edit, and export resources inside a project.</li>
+                        <li>Check logs from application pods, deployments, and build operations.</li>
+                     </ul>
+                  </li>
+                  <li>The <code>oc new-app</code> command can create application pods in many different ways: from an existing container image hosted on an image registry, from Dockerfiles, and from source code using the Source-to-Image (S2I) process.</li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary (continued)</h2>
+               <ul class="summary_list">
+                  <li>Source-to-Image (S2I) is a tool that makes it easy to build a container image from application source code. This tool retrieves source code from a Git repository, injects the source code into a selected container image based on a specific language or technology, and produces a new container image that runs the assembled application.</li>
+                  <li>A <code>Route</code> connects a public-facing IP address and DNS host name to an internal-facing service IP. While services allow for network access between pods inside an OpenShift instance, routes allow for network access to pods from users and applications outside the OpenShift instance.</li>
+                  <li>You can create, build, deploy and monitor applications using the OpenShift web console.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 7: Deploying Multi-Container Applications</h1>
+               <p class="goal_title">Goal: Deploy applications that are containerized using multiple container images.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Describe considerations for containerizing applications with multiple container images.</p>
+                  </li>
+                  <li>
+                     <p>Deploy a multi-container application on OpenShift Platform.</p>
+                  </li>
+                  <li>
+                     <p>Deploy an Application on OpenShift using a template.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Considerations for Multi-Container Applications</h2>
+               </section>
+               <section>
+                  <h3>Leveraging Multi-Container Applications</h3>
+               </section>
+               <section>
+                  <h3>Discovering Services in a Multi-Container Application</h3>
+               </section>
+               <section>
+                  <img src="images/multicontainer-design-lecture2.svg"/>
+                  <p>A restart breaks three-tiered application links</p>
+               </section>
+               <section>
+                  <img src="images/communication-rootless-containers2.svg"/>
+                  <p>Multi-Container Applications for rootless containers</p>
+               </section>
+               <section>
+                  <h3>Describing the To Do List Application</h3>
+               </section>
+               <section>
+                  <img src="images/todo-logical.svg"/>
+                  <p>To Do List application logical architecture</p>
+               </section>
+               <section>
+                  <img src="images/todo-app.png"/>
+                  <p>The To Do List application</p>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Deploying the Web Application and MySQL on Linux Containers</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Deploying a Multi-Container Application on OpenShift</h2>
+               </section>
+               <section>
+                  <h3>Comparing Podman and Kubernetes</h3>
+               </section>
+               <section>
+                  <h3>Services in Kubernetes</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating an Application on OpenShift</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Deploying a Multi-container Application on OpenShift Using a Template</h2>
+               </section>
+               <section>
+                  <h3>Processing a Template Using the CLI</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Creating an Application with a Template</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Deploying Multi-Container Applications</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>Software-defined networks enable communication between containers. Containers must be attached to the same software-defined network to communicate.</li>
+                  <li>Containerized applications cannot rely on fixed IP addresses or host names to find services.</li>
+                  <li>Podman uses Container Network Interface (CNI) to create a software-defined network and attaches all containers on the host to that network. Kubernetes and OpenShift create a software-defined network between all containers in a pod.</li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary (continued)</h2>
+               <ul class="summary_list">
+                  <li>Within the same project, Kubernetes injects a set of variables for each service into all pods.</li>
+                  <li>OpenShift templates automate creating applications consisting of multiple resources. Template parameters allow using the same values when creating multiple resources.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 8: Troubleshooting Containerized Applications</h1>
+               <p class="goal_title">Goal: Troubleshoot a containerized application deployed on OpenShift.</p>
+               <br/>
+               <p class="objective_list_title">Objectives:</p>
+               <ul class="objective_list">
+                  <li>
+                     <p>Troubleshoot an application build and deployment on OpenShift.</p>
+                  </li>
+                  <li>
+                     <p>Implement techniques for troubleshooting and debugging containerized applications.</p>
+                  </li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Troubleshooting S2I Builds and Deployments</h2>
+               </section>
+               <section>
+                  <h3>Introduction to the S2I Process</h3>
+               </section>
+               <section>
+                  <img src="images/troubleshoot-s2i-build-links.png"/>
+                  <p>Build instances of a project</p>
+               </section>
+               <section>
+                  <img src="images/troubleshoot-s2i-build-detail.png"/>
+                  <p>Detailed view of a build instance</p>
+               </section>
+               <section>
+                  <h3>Describing Common Problems</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Troubleshooting an OpenShift Build</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Troubleshooting Containerized Applications</h2>
+               </section>
+               <section>
+                  <h3>Forwarding Ports for Troubleshooting</h3>
+               </section>
+               <section>
+                  <h3>Enabling Remote Debugging with Port Forwarding</h3>
+               </section>
+               <section>
+                  <h3>Accessing Container Logs</h3>
+               </section>
+               <section>
+                  <h3>OpenShift Events</h3>
+               </section>
+               <section>
+                  <h3>Accessing Running Containers</h3>
+               </section>
+               <section>
+                  <h3>Overriding Container Binaries</h3>
+               </section>
+               <section>
+                  <h3>Transferring Files To and From Containers</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2>
+                  <span class="checklist_title"> Guided Exercise:</span>  Configuring Apache Container Logs for Debugging</h2>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Troubleshooting Containerized Applications</h2>
+               </section>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary</h2>
+               <ul class="summary_list">
+                  <li>Applications typically log activity, such as events, warnings and errors, to aid the analysis of application behavior.</li>
+                  <li>Container applications should print log data to standard output, instead of to a file, to enable easy access to logs.</li>
+                  <li>To review the logs for a container deployed locally with Podman, use the <code>podman logs</code> command.</li>
+                  <li>Use the <code>oc logs</code> command to access logs for <code>BuildConfig</code> and <code>Deployment</code> objects, as well as individual pods within an OpenShift project.</li>
+               </ul>
+            </section>
+            <section data-state="black">
+               <h2 class="summary-title">Summary (continued)</h2>
+               <ul class="summary_list">
+                  <li>The <code>-f</code> option allows you to monitor the log output in near real-time for both the <code>podman logs</code> and <code>oc logs</code> commands.</li>
+                  <li>Use the <code>oc port-forward</code> command to connect directly to a port on an application pod. You should only leverage this technique on non-production pods, because interactions can alter the behavior of the pod.</li>
+               </ul>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Chapter 9: Comprehensive Review</h1>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Comprehensive Review</h2>
+               </section>
+               <section>
+                  <h3>Reviewing Red Hat OpenShift I: Containers &amp; Kubernetes</h3>
+               </section>
+            </section>
+            <section data-state="black">
+               <section>
+                  <h2>Containerizing and Deploying a Software Application</h2>
+               </section>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Appendix: Implementing Microservices Architecture</h1>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Appendix: Creating a GitHub Account</h1>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Appendix: Creating a Quay Account</h1>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Appendix: Creating a Red Hat Account</h1>
+            </section>
+            <section data-state="white"
+                     data-background-image="css/images/RH_Chapter_Title_Background2.png">
+               <h1 class="course-title">Appendix: Useful Git Commands</h1>
+            </section>
+         </div>
+         <div class="logo"> </div>
+      </div>
+      <div class="versionString">
+         <p>DO180-OCP4.6-en-2-20210816</p>
+      </div>
+      <div class="copyright">
+         <p>Copyright &copy;<script>
+                        document.write(new Date().getFullYear())
+                        
+                    </script> Red Hat, Inc.</p>
+      </div>
+      <script src="lib/js/head.min.js"> </script>
+      <script src="js/reveal.js"> </script>
+      <script>
+                    // More info about config & dependencies:
+                    // - https://github.com/hakimel/reveal.js#configuration
+                    // - https://github.com/hakimel/reveal.js#dependencies
+                    Reveal.initialize({
+                    history: true,
+                    slideNumber: 'h.v',
+                    dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                    },
+                    {
+                    src: 'plugin/markdown/markdown.js'
+                    },
+                    {
+                    src: 'plugin/menu/menu.js'
+                    },
+                    {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                    },
+                    {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function() {
+                    hljs.initHighlightingOnLoad();
+                    }
+                    },
+                    // Zoom in and out with Alt+click
+                    { src: 'plugin/zoom-js/zoom.js', async: true }
+                    ],
+                    menu: {
+                    side: 'left',
+                    themes: false,
+                    transitions: false,
+                    useTextContentForMissingTitles: true,
+                    }
+                    });
+                    
+                    Reveal.addEventListener('white', function () {
+                    var colorVaryingClasses = ['versionString', 'copyright', 'slide-number']
+                    for (var j = 0, k = colorVaryingClasses.length; j < k; j++) {
+                    // Called each time the slide with the "white" state is made visible
+                    var elements = document.getElementsByClassName(colorVaryingClasses[j]);
+                    for (var i = 0, l = elements.length; i < l; i++) {
+                    elements[i].style.color = "white";
+                    }
+                    }
+                    
+                    var state = Reveal.getState();
+                    
+                    var menu = document.querySelector('.slide-menu-button');
+                    
+                    if (menu) {
+                    menu.classList.add("white");
+                    menu.classList.remove("black");
+                    }
+                    
+                    var bottomLogo = document.querySelector('.logo');
+                    
+                    if (state.indexh == 0) {
+                    bottomLogo.style.display = "none";
+                    } else {
+                    bottomLogo.style.backgroundImage = "url('css/images/redhat-logo-white.svg')";
+                    }
+                    
+                    var buttonRight = document.querySelector('.navigate-right');
+                    buttonRight.style.borderLeftColor = "white";
+                    
+                    var buttonLeft = document.querySelector('.navigate-left');
+                    buttonLeft.style.borderRightColor = "white";
+                    
+                    });
+                    
+                    Reveal.addEventListener('black', function () {
+                    var colorVaryingClasses = ['versionString', 'copyright', 'slide-number']
+                    
+                    for (var j = 0, k = colorVaryingClasses.length; j < k; j++) {
+                    // Called each time the slide with the "white" state is made visible
+                    var elements = document.getElementsByClassName(colorVaryingClasses[j]);
+                    for (var i = 0, l = elements.length; i < l; i++) {
+                    elements[i].style.color = "black";
+                    }
+                    }
+                    
+                    var menu = document.querySelector('.slide-menu-button');
+                    
+                    if (menu) {
+                    menu.classList.add("black");
+                    menu.classList.remove("white");
+                    }
+                    
+                    var bottomLogo = document.querySelector('.logo');
+                    
+                    bottomLogo.style.display = "block";
+                    bottomLogo.style.backgroundImage = "url('css/images/redhat-logo.svg')";
+                    
+                    var buttonRight = document.querySelector('.navigate-right');
+                    buttonRight.style.borderLeftColor = "#CC0000";
+                    
+                    var buttonLeft = document.querySelector('.navigate-left');
+                    buttonLeft.style.borderRightColor = "#CC0000";
+                    
+                    });
+                    
+                </script>
+   </body>
+</html>
